@@ -30,15 +30,23 @@ def generate_secret_number(max_value):
 
 def get_user_guess(max_value):
     """
-    Get a valid number from the user.
+    Get a valid number from the user within range.
     """
     guess = input(f"Enter a number between 1 and {max_value}: ")
 
+    # Check if input is numeric
     if not guess.isdigit():
         print("Invalid input. Please enter numbers only.")
         return None
 
-    return int(guess)
+    guess = int(guess)
+
+    # Check if number is within the valid range
+    if guess < 1 or guess > max_value:
+        print(f"Please enter a number between 1 and {max_value}.")
+        return None
+
+    return guess
 
 def check_guess(guess, secret_number):
     """
